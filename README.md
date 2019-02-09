@@ -6,3 +6,5 @@ The main focus is not to todo-app as application.
 
 
 # Whereas learning docker to make two container talk to each other and multi-stage build using docker is objective.
+
+run `docker-compose up --build` and hit 3000 port on localhost
