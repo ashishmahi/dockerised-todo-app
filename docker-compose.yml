@@ -1,20 +1,21 @@
 version: '3'
 
 services:
-  api:
+  nodeapp:
     build: ./app
     ports:
-    - "3003:3000"
+    - "3000:3000"
     volumes:
     - "./app/server.js:/usr/src/app/sever.js"
     depends_on:
-    - todos
+    - todoapp
+    environment:
+      - TODO_APP=http://todoApp:8080/
 
-  todos:
-    build:
-      context: ./todoapp
-    ports:
-      - "5000:5000"
+  todoapp:
+    build: ./todo
+    volumes:
+      - ./todo/todos/todos.json:/app/todos.json
 
 
 

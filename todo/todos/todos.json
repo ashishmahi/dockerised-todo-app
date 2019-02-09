@@ -1,0 +1,15 @@
+{
+  "todos": [
+    {
+      "details": "eat"
+    },
+    {
+      "details": "sleep"
+    },
+    {
+      "details": "repeat"
+    },{
+      "details": "repeat"
+    }
+  ]
+}

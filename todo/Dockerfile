@@ -1,14 +1,15 @@
-FROM openjdk
+FROM openjdk AS BUILD_IMAGE
+ENV APP_HOME=/todo/
+RUN mkdir -p $APP_HOME/src/main/java
+WORKDIR $APP_HOME
+COPY build.gradle gradlew $APP_HOME
+COPY gradle $APP_HOME/gradle
+COPY . .
+RUN ./gradlew build
 
-WORKDIR /java/app
-
-VOLUME /tmp
-
-#COPY build/libs/todo-0.0.1-SNAPSHOT.jar .
-
-COPY build/libs/todo-0.0.1-SNAPSHOT.jar .
-
-#RUN sh -c 'touch build/libs/todo-0.0.1-SNAPSHOT.jar'
-
-ENTRYPOINT ["java","-jar","todo-0.0.1-SNAPSHOT.jar","--server.port=8181"]
-
+#-------------
+FROM openjdk:11-jre
+WORKDIR /app/
+COPY --from=BUILD_IMAGE /todo/build/libs/todo.jar .
+EXPOSE 8080
+CMD ["java","-jar","todo.jar"]
