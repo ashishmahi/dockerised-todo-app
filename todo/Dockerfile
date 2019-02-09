@@ -4,7 +4,7 @@ RUN mkdir -p $APP_HOME/src/main/java
 WORKDIR $APP_HOME
 COPY build.gradle gradlew $APP_HOME
 COPY gradle $APP_HOME/gradle
-COPY . .
+COPY ./src  $APP_HOME/src
 RUN ./gradlew build
 
 #-------------
