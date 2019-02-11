@@ -27,9 +27,9 @@ app.get('/todos', (req, res) =>  {
 app.post('/todos', (req, res) =>  {
     const URL = TODO_APP+"/todos";
     request.post(URL, 
-    {form:{ details: req.body.details }}, 
+    {json:{ details: req.body.details }},
     function(error, response, body){
-    if(err)console.log(err);
+    if(error)console.log(error);
     res.redirect('/todos');
 });
 });
